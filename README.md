@@ -27,9 +27,11 @@ The program needs to process this input including the best way to handle some hu
 ## Solution
 Code: c# 7.3
 
-Core Libraries: .NET Standard
+Core Libraries: .NET Standard 2.0
 
-Console Application: .NET Core
+Console Application: .NET Core 2.1
+
+Test project: .NET Framework 4.6.1
 
 ## Publish
 
