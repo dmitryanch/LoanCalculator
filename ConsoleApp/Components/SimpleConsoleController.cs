@@ -16,7 +16,7 @@ namespace ConsoleApp.Components
 		IConsoleView _view;
 		private readonly ILogger _logger;
 		private readonly ICalculator<LoanInfo, LoanPaymentsInfo> _calculator;
-		private bool _needRepeat;
+		private bool _needRepeat = true;
 		#endregion
 
 		public SimpleConsoleController(IConsoleView view, ILoggerFactory loggerFactory, 
@@ -30,7 +30,9 @@ namespace ConsoleApp.Components
 		#region Public API
 		public void Initialize()
 		{
+			_logger.LogDebug("Controller initializing");
 			_view.Initialize();
+			_logger.LogDebug("Controller initialized");
 		}
 
 		public Task Iterate()
@@ -45,7 +47,7 @@ namespace ConsoleApp.Components
 			_view.Write("Calculated payments:");
 			_view.Write(payments?.JsonStringify() ?? "Incorrect input parameters (amount, downpayment).");
 
-			_needRepeat = _view.OnSuccess();
+			_needRepeat = _view.NeedRepeat();
 			_logger.LogDebug("Iteration finished");
 			return Task.CompletedTask;
 		}
@@ -64,6 +66,7 @@ namespace ConsoleApp.Components
 		{
 			string input;
 			var loanDTO = new LoanInfoDTO();
+			_view.Write("Please enter loan parameters:");
 			startInput:
 			while (!string.IsNullOrEmpty(input = _view.GetUserInput()))
 			{

@@ -11,7 +11,6 @@ namespace ConsoleApp.Components
 		public void Initialize()
 		{
 			WriteLine("========== Loan payment calculator ==========");
-			WriteLine("Please enter loan parameters:");
 			ClearLines();
 		}
 
@@ -31,7 +30,7 @@ namespace ConsoleApp.Components
 			ReadLine();
 		}
 
-		public bool OnSuccess()
+		public bool NeedRepeat()
 		{
 			ClearLines();
 			WriteLine("To repeat calculation - press ENTER, to quit - any else.");

@@ -38,15 +38,13 @@ namespace ConsoleApp.Components
 		#region Public API
 		public async Task Run()
 		{
-			initPoint:
 			_controller.Initialize();
 			_logger.LogDebug("App was initialized.");
 			try
 			{
-				await _controller.Iterate();
-				if (_controller.NeedRepeat)
+				while (_controller.NeedRepeat)
 				{
-					goto initPoint;
+					await _controller.Iterate();
 				}
 			}
 			catch (Exception ex)

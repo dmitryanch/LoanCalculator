@@ -6,6 +6,6 @@
 		void Write(params string[] lines);
 		string GetUserInput();
 		void OnError();
-		bool OnSuccess();
+		bool NeedRepeat();
 	}
 }
